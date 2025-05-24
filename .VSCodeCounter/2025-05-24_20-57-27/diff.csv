@@ -1,0 +1,21 @@
+"filename", "language", "JSON", "TypeScript", "TypeScript JSX", "comment", "blank", "total"
+"/home/archie/Documents/Github-Projects/luxus/package.json", "JSON", 2, 0, 0, 0, 0, 2
+"/home/archie/Documents/Github-Projects/luxus/src/app/Home.tsx", "TypeScript JSX", 0, 0, 4, 20, 0, 24
+"/home/archie/Documents/Github-Projects/luxus/src/app/api/url/route.ts", "TypeScript", 0, 14, 0, 0, 3, 17
+"/home/archie/Documents/Github-Projects/luxus/src/app/atoms/qrCode.ts", "TypeScript", 0, 2, 0, 0, 2, 4
+"/home/archie/Documents/Github-Projects/luxus/src/app/pages/OwnedProducts.tsx", "TypeScript JSX", 0, 0, 110, 1, 19, 130
+"/home/archie/Documents/Github-Projects/luxus/src/app/pages/consumer/Tabs.tsx", "TypeScript JSX", 0, 0, 18, 0, 4, 22
+"/home/archie/Documents/Github-Projects/luxus/src/app/pages/manufacturer/Tabs.tsx", "TypeScript JSX", 0, 0, 36, 0, 4, 40
+"/home/archie/Documents/Github-Projects/luxus/src/app/pages/manufacturer/tabs/Mint.tsx", "TypeScript JSX", 0, 0, 128, 5, 30, 163
+"/home/archie/Documents/Github-Projects/luxus/src/app/pages/manufacturer/tabs/Register.tsx", "TypeScript JSX", 0, 0, 100, 0, 18, 118
+"/home/archie/Documents/Github-Projects/luxus/src/app/pages/manufacturer/tabs/Transfer.tsx", "TypeScript JSX", 0, 0, 114, 2, 23, 139
+"/home/archie/Documents/Github-Projects/luxus/src/app/qr/QRCodeGenerator.tsx", "TypeScript JSX", 0, 0, 56, 0, 13, 69
+"/home/archie/Documents/Github-Projects/luxus/src/app/qr/QRCodeScanner.tsx", "TypeScript JSX", 0, 0, 51, 1, 11, 63
+"/home/archie/Documents/Github-Projects/luxus/src/app/scanner/QRCodeScanner.tsx", "TypeScript JSX", 0, 0, -51, -1, -11, -63
+"/home/archie/Documents/Github-Projects/luxus/src/app/web3/ConnectWallet.tsx", "TypeScript JSX", 0, 0, 2, 0, 0, 2
+"/home/archie/Documents/Github-Projects/luxus/src/app/web3/Mint.tsx", "TypeScript JSX", 0, 0, -129, -12, -23, -164
+"/home/archie/Documents/Github-Projects/luxus/src/app/web3/QRCodeGenerator.tsx", "TypeScript JSX", 0, 0, -41, 0, -12, -53
+"/home/archie/Documents/Github-Projects/luxus/src/components/ui/tabs.tsx", "TypeScript JSX", 0, 0, 48, 0, 8, 56
+"/home/archie/Documents/Github-Projects/luxus/src/lib/constants.ts", "TypeScript", 0, 269, 0, 0, 1, 270
+"/home/archie/Documents/Github-Projects/luxus/src/utils/config.ts", "TypeScript", 0, 6, 0, 0, 3, 9
+"Total", "-", 2, 291, 446, 16, 93, 848

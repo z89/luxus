@@ -1,0 +1,41 @@
+"filename", "language", "JSON", "JSON with Comments", "TypeScript", "XML", "Markdown", "JavaScript", "TypeScript JSX", "PostCSS", "comment", "blank", "total"
+"/home/archie/Documents/Github-Projects/luxus/README.md", "Markdown", 0, 0, 0, 0, 23, 0, 0, 0, 0, 14, 37
+"/home/archie/Documents/Github-Projects/luxus/components.json", "JSON", 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21
+"/home/archie/Documents/Github-Projects/luxus/eslint.config.mjs", "JavaScript", 0, 0, 0, 0, 0, 12, 0, 0, 0, 5, 17
+"/home/archie/Documents/Github-Projects/luxus/next.config.ts", "TypeScript", 0, 0, 4, 0, 0, 0, 0, 0, 1, 3, 8
+"/home/archie/Documents/Github-Projects/luxus/package.json", "JSON", 43, 0, 0, 0, 0, 0, 0, 0, 0, 1, 44
+"/home/archie/Documents/Github-Projects/luxus/postcss.config.mjs", "JavaScript", 0, 0, 0, 0, 0, 6, 0, 0, 1, 2, 9
+"/home/archie/Documents/Github-Projects/luxus/public/file.svg", "XML", 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1
+"/home/archie/Documents/Github-Projects/luxus/public/globe.svg", "XML", 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1
+"/home/archie/Documents/Github-Projects/luxus/public/next.svg", "XML", 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1
+"/home/archie/Documents/Github-Projects/luxus/public/vercel.svg", "XML", 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1
+"/home/archie/Documents/Github-Projects/luxus/public/window.svg", "XML", 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1
+"/home/archie/Documents/Github-Projects/luxus/src/app/Home.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 34, 0, 45, 4, 83
+"/home/archie/Documents/Github-Projects/luxus/src/app/api/url/route.ts", "TypeScript", 0, 0, 14, 0, 0, 0, 0, 0, 0, 3, 17
+"/home/archie/Documents/Github-Projects/luxus/src/app/atoms/qrCode.ts", "TypeScript", 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 4
+"/home/archie/Documents/Github-Projects/luxus/src/app/atoms/wallet.ts", "TypeScript", 0, 0, 3, 0, 0, 0, 0, 0, 0, 2, 5
+"/home/archie/Documents/Github-Projects/luxus/src/app/globals.css", "PostCSS", 0, 0, 0, 0, 0, 0, 0, 69, 0, 8, 77
+"/home/archie/Documents/Github-Projects/luxus/src/app/layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 25, 0, 0, 5, 30
+"/home/archie/Documents/Github-Projects/luxus/src/app/pages/OwnedProducts.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 110, 0, 0, 16, 126
+"/home/archie/Documents/Github-Projects/luxus/src/app/pages/consumer/Tabs.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 18, 0, 0, 4, 22
+"/home/archie/Documents/Github-Projects/luxus/src/app/pages/manufacturer/Tabs.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 31, 0, 0, 4, 35
+"/home/archie/Documents/Github-Projects/luxus/src/app/pages/manufacturer/tabs/Transfer.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 110, 0, 1, 22, 133
+"/home/archie/Documents/Github-Projects/luxus/src/app/pages/manufacturer/tabs/mint/Mint.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 166, 0, 0, 32, 198
+"/home/archie/Documents/Github-Projects/luxus/src/app/pages/manufacturer/tabs/mint/functions.ts", "TypeScript", 0, 0, 32, 0, 0, 0, 0, 0, 64, 27, 123
+"/home/archie/Documents/Github-Projects/luxus/src/app/pages/manufacturer/tabs/mint/generator.ts", "TypeScript", 0, 0, 20, 0, 0, 0, 0, 0, 0, 3, 23
+"/home/archie/Documents/Github-Projects/luxus/src/app/pages/manufacturer/tabs/mint/ipfsUpload.ts", "TypeScript", 0, 0, 13, 0, 0, 0, 0, 0, 0, 7, 20
+"/home/archie/Documents/Github-Projects/luxus/src/app/qr/QRCodeScanner.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 51, 0, 1, 11, 63
+"/home/archie/Documents/Github-Projects/luxus/src/app/web3/ConnectWallet.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 129, 0, 0, 16, 145
+"/home/archie/Documents/Github-Projects/luxus/src/components/ui/accordion.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 50, 0, 0, 8, 58
+"/home/archie/Documents/Github-Projects/luxus/src/components/ui/button.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 52, 0, 0, 6, 58
+"/home/archie/Documents/Github-Projects/luxus/src/components/ui/collapsible.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 6, 0, 0, 6, 12
+"/home/archie/Documents/Github-Projects/luxus/src/components/ui/input.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 19, 0, 0, 4, 23
+"/home/archie/Documents/Github-Projects/luxus/src/components/ui/label.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 21, 0, 0, 6, 27
+"/home/archie/Documents/Github-Projects/luxus/src/components/ui/tabs.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 48, 0, 0, 8, 56
+"/home/archie/Documents/Github-Projects/luxus/src/lib/constants.ts", "TypeScript", 0, 0, 588, 0, 0, 0, 0, 0, 0, 2, 590
+"/home/archie/Documents/Github-Projects/luxus/src/lib/utils.ts", "TypeScript", 0, 0, 5, 0, 0, 0, 0, 0, 0, 2, 7
+"/home/archie/Documents/Github-Projects/luxus/src/utils/config.ts", "TypeScript", 0, 0, 6, 0, 0, 0, 0, 0, 0, 3, 9
+"/home/archie/Documents/Github-Projects/luxus/tailwind.config.ts", "TypeScript", 0, 0, 80, 0, 0, 0, 0, 0, 0, 2, 82
+"/home/archie/Documents/Github-Projects/luxus/tsconfig.json", "JSON with Comments", 0, 28, 0, 0, 0, 0, 0, 0, 0, 1, 29
+"/home/archie/Documents/Github-Projects/luxus/types/globals.d.ts", "TypeScript", 0, 0, 12, 0, 0, 0, 0, 0, 1, 3, 16
+"Total", "-", 64, 28, 779, 5, 23, 18, 870, 69, 114, 242, 2212
