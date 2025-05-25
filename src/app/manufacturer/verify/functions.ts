@@ -7,12 +7,14 @@ export async function transferToken(tokenId: string, signer: ethers.JsonRpcSigne
   const tx = await saleContract.directTransfer(tokenId, recipient);
   await tx.wait();
 
-  console.log("Approval Tx Hash:", tx.hash);
-  //   const saleContract = new ethers.Contract(SALE_ADDRESS, SALE_ABI, signer);
+  return tx.hash;
+}
 
-  //   const tx = await saleContract.approve();
-  //   const tx = await saleContract.transfer(tokenId, to);
-  //   await tx.wait();
-  //   console.log("Transaction hash:", tx.hash);
+export async function getToken(tokenId: string, signer: ethers.JsonRpcSigner, recipient: string): Promise<string> {
+  const saleContract = new ethers.Contract(SALE_ADDRESS, SALE_ABI, signer);
+
+  const tx = await saleContract.directTransfer(tokenId, recipient);
+  await tx.wait();
+
   return tx.hash;
 }

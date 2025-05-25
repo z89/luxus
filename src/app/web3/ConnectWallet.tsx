@@ -13,7 +13,7 @@ export default function ConnectWalletButton() {
   const [stakeholderType, setStakeholderType] = useAtom(stakeholderTypeAtom);
   const [isMetamaskAvailable, setIsMetamaskAvailable] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [loading, setLoading] = useState(true); // ✅ new state
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
@@ -21,7 +21,7 @@ export default function ConnectWalletButton() {
     try {
       await navigator.clipboard.writeText(walletAddress ?? "");
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+      setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       console.error("Failed to copy:", err);
     }
@@ -31,7 +31,7 @@ export default function ConnectWalletButton() {
     if (typeof window !== "undefined") {
       setIsMetamaskAvailable(!!window.ethereum);
       setIsMobile(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
-      setLoading(false); // ✅ once detection is complete
+      setLoading(false);
     }
   }, []);
 

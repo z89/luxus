@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import { atom, useSetAtom } from "jotai";
 
-// Atom to store the decoded QR value
 export const decodedTextAtom = atom<string | null>(null);
 
 export const QRCodeScanner: React.FC = () => {
@@ -13,7 +12,7 @@ export const QRCodeScanner: React.FC = () => {
   const [isReady, setIsReady] = useState(false);
   const scannerRef = useRef<Html5Qrcode | null>(null);
   const readerId = useRef("reader");
-  const cameraStartedRef = useRef(false); // safe flag for start
+  const cameraStartedRef = useRef(false);
 
   const startScanner = useCallback(async () => {
     if (cameraStartedRef.current || !isReady) return;
@@ -26,10 +25,8 @@ export const QRCodeScanner: React.FC = () => {
         return;
       }
 
-      // Try to find a camera labeled as "back" or "environment"
       const backCamera = devices.find((device) => device.label.toLowerCase().includes("back") || device.label.toLowerCase().includes("environment"));
 
-      // Fallback to the first camera if back not found
       const selectedCameraId = backCamera?.id || devices[0].id;
 
       const html5QrCode = new Html5Qrcode(readerId.current);
@@ -52,9 +49,7 @@ export const QRCodeScanner: React.FC = () => {
           scannerRef.current = null;
           cameraStartedRef.current = false;
         },
-        () => {
-          // Optional decode failure callback
-        }
+        () => {}
       );
     } catch (err) {
       console.error("Error initializing scanner:", err);
@@ -63,7 +58,7 @@ export const QRCodeScanner: React.FC = () => {
   }, [isReady, setDecodedText]);
 
   useEffect(() => {
-    setIsReady(true); // triggers one-time scanner init
+    setIsReady(true);
   }, []);
 
   useEffect(() => {

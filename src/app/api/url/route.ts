@@ -8,7 +8,7 @@ export async function GET() {
     const url = await pinata.upload.public.createSignedURL({
       expires: 30,
     });
-    return NextResponse.json({ url: url }, { status: 200 }); // Returns the signed upload URL
+    return NextResponse.json({ url: url }, { status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ text: "Error creating API Key:" }, { status: 500 });

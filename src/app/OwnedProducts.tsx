@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import Image from "next/image";
-import { CONTROL_ABI, CONTROL_ADDRESS, MINT_ABI, MINT_ADDRESS } from "@/lib/constants";
+import { CONTROL_ABI, CONTROL_ADDRESS, MINT_ABI, MINT_ADDRESS, SALE_ABI, SALE_ADDRESS } from "@/lib/constants";
 import { useAtomValue } from "jotai";
 import { walletAddressAtom } from "./atoms/wallet";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
@@ -24,26 +24,39 @@ interface Token {
   verified: boolean;
   currentOwner: string;
   history: string[];
+  forSale: boolean;
 }
 
-function TokenCard({ token }: { token: Token }) {
+export function TokenCard({ token }: { token: Token }) {
   const [imgLoading, setImgLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  console.log("token : ", token);
 
   return (
     <div className="border rounded-lg p-4 shadow hover:shadow-md transition text-sm">
-      <div className="relative w-full h-48 mb-3 flex items-center justify-center">
-        {imgLoading && <MoonLoader className="absolute" color="#000" size={24} />}
-        <Image
-          src={token.qrCode}
-          alt={`QR Code for Token ${token.tokenId}`}
-          fill
-          style={{ objectFit: "contain" }}
-          unoptimized={true}
-          priority={false}
-          onLoad={() => setImgLoading(false)}
-        />
+      <div className="relative w-full h-48 mb-3 flex justify-center">
+        <div className="flex w-full h-full items-center justify-center">
+          {imgLoading && <MoonLoader className="absolute" color="#000" size={24} />}
+          <Image
+            src={token.qrCode}
+            alt={`QR Code for Token ${token.tokenId}`}
+            fill
+            style={{ objectFit: "contain" }}
+            unoptimized={true}
+            priority={false}
+            onLoad={() => setImgLoading(false)}
+          />
+        </div>
       </div>
+      {token.forSale ? (
+        <div className="ml-auto bg-green-500 w-min whitespace-nowrap no-underline h-min hover:no-underline text-white hover:bg-green-600 py-2 px-3 rounded-lg">
+          For Sale
+        </div>
+      ) : (
+        <div className="ml-auto bg-zinc-500 opacity-70 w-min no-underline whitespace-nowrap h-min hover:no-underline text-white hover:bg-zinc-600 py-2 px-3 rounded-lg">
+          Not For Sale
+        </div>
+      )}
 
       <p>
         <span className="font-medium">Serial Number:</span> {token.metadata.serialNumber}
@@ -75,7 +88,7 @@ function TokenCard({ token }: { token: Token }) {
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <CollapsibleTrigger
           onClick={() => setIsOpen(!isOpen)}
-          className="mt-3 flex items-center gap-1 cursor-pointer text-blue-600 hover:underline font-semibold select-none"
+          className="mt-3 flex items-center w-full gap-1 cursor-pointer text-blue-600 hover:underline font-semibold select-none"
         >
           {isOpen ? (
             <>
@@ -122,6 +135,7 @@ export default function OwnedProducts() {
 
       const controlContract = new ethers.Contract(CONTROL_ADDRESS, CONTROL_ABI, signer);
       const mintContract = new ethers.Contract(MINT_ADDRESS, MINT_ABI, signer);
+      const saleContract = new ethers.Contract(SALE_ADDRESS, SALE_ABI, signer);
 
       const ids: bigint[] = await controlContract.getOwnedTokenIds(owner);
 
@@ -131,6 +145,8 @@ export default function OwnedProducts() {
           const [tokenId, qrCode, verified, currentOwner] = await controlContract.products(id);
 
           const [brand, serialNumber, productType, material] = await mintContract.getMetadata(id);
+
+          const forSale: boolean = (await saleContract.sales(id))[2];
 
           return {
             tokenId,
@@ -144,6 +160,7 @@ export default function OwnedProducts() {
             verified,
             currentOwner,
             history,
+            forSale,
           };
         })
       );

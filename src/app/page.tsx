@@ -13,10 +13,11 @@ export default function Home() {
   return (
     <div className="w-full h-full font-[family-name:var(--font-geist-sans)]">
       <div className="w-full h-full flex flex-col gap-x-10 ">
-        <div className="flex flex-col gap-y-3 lg:flex-row items-center justify-between border-b lg:px-8 px-6 py-6">
+        <div className="flex flex-col gap-y-3 md:flex-row items-center justify-between border-b md:px-8 px-6 py-6">
           <div className="flex items-center gap-x-2">
             <Gem className="w-7 h-7 text-zinc-900" />
             <h1 className="text-[1.7rem] font-semibold  tracking-tight ">luxus</h1>
+            <p className="text-lg font-normal tracking-tight ">v1.2</p>
           </div>
           <ConnectWalletButton />
         </div>

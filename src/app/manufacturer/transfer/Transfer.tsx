@@ -108,12 +108,8 @@ export default function Transfer(): JSX.Element {
             {tx && (
               <div className="flex flex-col items-center mt-6 gap-y-2 gap-x-8">
                 <p className="text-sm text-zinc-800 ">{walletAddress}</p>
-                {/* <p className="text-sm text-blue-600 ">{"0x730dafd12ddf01ba50897205b0db9a3961db0ef1"}</p> */}
                 <Shuffle className="w-6 h-6 text-sky-600" />
                 <p className="text-sm text-zinc-800 break-words whitespace-pre-wrap">{form.to}</p>
-                {/* <p className="text-sm text-blue-600 break-words whitespace-pre-wrap">
-                  {"0x978099ed3f475afe39132f782297ba2716085ccbc7695b08982d51b1989a6dc1"}
-                </p> */}
               </div>
             )}
           </div>

@@ -1,36 +1,6 @@
 import { ethers } from "ethers";
 import { MINT_ADDRESS, MINT_ABI, CONTROL_ADDRESS, CONTROL_ABI } from "@/lib/constants";
-// import { createQRCodeInstance } from "@/app/qr/generation/generator";
-// import { uploadQRCodeToIPFS } from "@/app/qr/generation/ipfsUpload";
 
-// export async function mintProduct(
-//   form: { brand: string; serialNumber: string; productType: string; material: string },
-//   signer: ethers.Signer,
-//   setStatus: (s: string | null) => void
-// ): Promise<bigint> {
-//   const { brand, serialNumber, productType, material } = form;
-
-//   const mintContract = new ethers.Contract(MINT_ADDRESS, MINT_ABI, signer);
-//   const txResponse = await mintContract.mint(brand, serialNumber, productType, material);
-
-//   setStatus("Waiting for mint confirmation...");
-//   const receipt = await txResponse.wait();
-
-//   if (!receipt) throw new Error("Minting transaction failed.");
-
-//   for (const log of receipt.logs) {
-//     try {
-//       const parsed = mintContract.interface.parseLog(log);
-//       if (parsed?.name === "Minted") {
-//         return parsed.args.tokenId;
-//       }
-//     } catch {
-//       // skip unparseable logs
-//     }
-//   }
-
-//   throw new Error("Token ID not found in event logs.");
-// }
 export async function mintProduct(
   form: { brand: string; serialNumber: string; productType: string; material: string },
   signer: ethers.Signer,
@@ -57,7 +27,7 @@ export async function mintProduct(
         };
       }
     } catch {
-      // skip unparseable logs
+      continue;
     }
   }
 
