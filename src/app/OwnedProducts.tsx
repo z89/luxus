@@ -149,7 +149,6 @@ export default function OwnedProducts() {
       );
 
       setTokens(tokenData);
-      console.log("tokenData", tokenData);
     } catch (err) {
       console.error(err);
       setError("Failed to fetch token data. See console for details.");

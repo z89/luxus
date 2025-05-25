@@ -7,20 +7,22 @@ import { Label } from "@/components/ui/label";
 import { PulseLoader } from "react-spinners";
 import { ethers } from "ethers";
 import { transferToken } from "./functions";
+import { Shuffle } from "lucide-react";
+import { useAtomValue } from "jotai";
+import { walletAddressAtom } from "@/app/atoms/wallet";
 
 interface TransferForm {
-  from: string;
   to: string;
   tokenId: string;
 }
 
 export default function Transfer(): JSX.Element {
   const [form, setForm] = useState<TransferForm>({
-    from: "",
     to: "",
     tokenId: "",
   });
 
+  const walletAddress = useAtomValue(walletAddressAtom);
   const [status, setStatus] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [tx, setTx] = useState<string | null>(null);
@@ -31,47 +33,6 @@ export default function Transfer(): JSX.Element {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  // async function handleTransfer(): Promise<void> {
-  //   const { from, to, tokenId } = form;
-
-  //   if (!from || !to || !tokenId) {
-  //     setError("All fields are required.");
-  //     return;
-  //   }
-
-  //   try {
-  //     setLoading(true);
-  //     setStatus("Connecting to wallet...");
-  //     setError(null);
-
-  //     if (typeof window === "undefined" || !window.ethereum) {
-  //       throw new Error("MetaMask not detected");
-  //     }
-
-  //     const provider = new ethers.BrowserProvider(window.ethereum);
-  //     const signer = await provider.getSigner();
-
-  //     setStatus("Waiting for transfer confirmation...");
-  //     const txHash = await transferToken(from, to, tokenId, signer);
-  //     setTx(txHash);
-
-  //     setStatus("✅ Token transferred successfully!");
-  //   } catch (err) {
-  //     const error = err as { code?: string; message: string };
-  //     const code = error.code;
-  //     const message = error.message;
-
-  //     if (code === "ACTION_REJECTED") {
-  //       setError("❌ You cancelled the transaction.");
-  //     } else {
-  //       setError(`❌ Error: ${message}`);
-  //     }
-
-  //     setStatus(null);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
   async function handleTransfer(): Promise<void> {
     const { to, tokenId } = form;
 
@@ -91,22 +52,18 @@ export default function Transfer(): JSX.Element {
 
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
-      const userAddress = await signer.getAddress();
 
       setStatus("Waiting for transfer confirmation...");
-      const txHash = await transferToken(to, tokenId, signer);
+      const txHash = await transferToken(tokenId, signer, to);
       setTx(txHash);
 
-      setStatus(`✅ Token transferred from ${userAddress} to ${to}`);
+      setStatus(`✅ Token transfered successfully!`);
     } catch (err) {
       const error = err as { code?: string; message: string };
       const code = error.code;
-      const message = error.message;
 
-      if (code === "ACTION_REJECTED") {
-        setError("❌ You cancelled the transaction.");
-      } else {
-        setError(`❌ Error: ${message}`);
+      if (code === "CALL_EXCEPTION") {
+        setError("❌ You are not the owner of this token.");
       }
 
       setStatus(null);
@@ -118,14 +75,11 @@ export default function Transfer(): JSX.Element {
   return (
     <div className="space-y-4 p-4 border rounded-xl items-center shadow flex flex-col w-full max-w-3xl">
       <div className="space-y-2 w-full">
-        <Label htmlFor="from">From Address</Label>
-        <Input id="from" name="from" value={form.from} onChange={handleChange} placeholder="0x..." />
+        <Label htmlFor="tokenId">Token ID</Label>
+        <Input id="tokenId" name="tokenId" value={form.tokenId} onChange={handleChange} placeholder="e.g. 1" />
 
         <Label htmlFor="to">To Address</Label>
         <Input id="to" name="to" value={form.to} onChange={handleChange} placeholder="0x..." />
-
-        <Label htmlFor="tokenId">Token ID</Label>
-        <Input id="tokenId" name="tokenId" value={form.tokenId} onChange={handleChange} placeholder="e.g. 1" />
       </div>
 
       <Button onClick={handleTransfer} className="bg-blue-600 text-white w-full">
@@ -139,7 +93,7 @@ export default function Transfer(): JSX.Element {
             <pre className="ml-2">{status}</pre>
           </div>
         ) : (
-          <div className="flex flex-col items-center w-full overflow-hidden justify-center gap-y-2">
+          <div className="flex flex-col items-center w-full overflow-hidden justify-center gap-y-3">
             <p className="text-sm text-green-600 break-words whitespace-pre-wrap">{status}</p>
             {tx && (
               <a
@@ -150,6 +104,17 @@ export default function Transfer(): JSX.Element {
               >
                 {tx}
               </a>
+            )}
+            {tx && (
+              <div className="flex flex-col items-center mt-6 gap-y-2 gap-x-8">
+                <p className="text-sm text-zinc-800 ">{walletAddress}</p>
+                {/* <p className="text-sm text-blue-600 ">{"0x730dafd12ddf01ba50897205b0db9a3961db0ef1"}</p> */}
+                <Shuffle className="w-6 h-6 text-sky-600" />
+                <p className="text-sm text-zinc-800 break-words whitespace-pre-wrap">{form.to}</p>
+                {/* <p className="text-sm text-blue-600 break-words whitespace-pre-wrap">
+                  {"0x978099ed3f475afe39132f782297ba2716085ccbc7695b08982d51b1989a6dc1"}
+                </p> */}
+              </div>
             )}
           </div>
         )}

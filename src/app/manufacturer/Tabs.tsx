@@ -4,6 +4,7 @@ import Mint from "@/app/manufacturer/mint/Mint";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import Transfer from "./transfer/Transfer";
 import OwnedProducts from "../OwnedProducts";
+import Verify from "./verify/Verify";
 
 export default function ManufacturerTabs() {
   return (
@@ -26,7 +27,7 @@ export default function ManufacturerTabs() {
           <Transfer />
         </TabsContent>
         <TabsContent className="flex items-center justify-center" value="verify">
-          <h1>dasdsa</h1>
+          <Verify />
         </TabsContent>
       </Tabs>
     </div>

@@ -6,6 +6,7 @@ import { ethers } from "ethers";
 import { Button } from "@/components/ui/button";
 import { stakeholderTypeAtom, walletAddressAtom } from "../atoms/wallet";
 import { MINT_ABI, MINT_ADDRESS } from "@/lib/constants";
+import { Check, Copy } from "lucide-react";
 
 export default function ConnectWalletButton() {
   const [walletAddress, setWalletAddress] = useAtom(walletAddressAtom);
@@ -14,6 +15,17 @@ export default function ConnectWalletButton() {
   const [isMobile, setIsMobile] = useState(false);
   const [loading, setLoading] = useState(true); // ✅ new state
   const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(walletAddress ?? "");
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -111,18 +123,25 @@ export default function ConnectWalletButton() {
               {walletAddress ? (
                 <div className="flex flex-col gap-y-1">
                   <div className="flex flex-col lg:flex-row items-center gap-x-2 gap-y-3">
-                    <p className="text-sm mr-2 text-green-600">Connected: {formatAddress(walletAddress)}</p>
+                    <div className="flex items-center ">
+                      <p className="text-sm mr-2 text-green-600">Connected: {formatAddress(walletAddress)}</p>
+                      <button onClick={handleCopy} className="p-1 hover:bg-gray-100 rounded transition" aria-label="Copy Wallet Address">
+                        {copied ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4 text-gray-400" />}
+                      </button>
+                    </div>
                     <div className="flex items-center gap-x-2">
                       {stakeholderType && (
-                        <Button
-                          variant={"outline"}
-                          className={`text-xs uppercase font-bold pointer-events-none ${
-                            stakeholderType === "manufacturer" ? "text-red-600 border-red-200" : "text-blue-600 border-blue-200"
-                          } `}
-                          size={"sm"}
-                        >
-                          {stakeholderType}
-                        </Button>
+                        <>
+                          <Button
+                            variant={"outline"}
+                            className={`text-xs uppercase font-bold pointer-events-none ${
+                              stakeholderType === "manufacturer" ? "text-red-600 border-red-200" : "text-blue-600 border-blue-200"
+                            } `}
+                            size={"sm"}
+                          >
+                            {stakeholderType}
+                          </Button>
+                        </>
                       )}
                       <Button onClick={disconnectWallet} variant={"destructive"} size="sm" className="text-sm ">
                         Disconnect

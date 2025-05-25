@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { PulseLoader } from "react-spinners";
-import { mintProduct, registerProduct } from "./functions";
+import { mintProduct, registerProduct, verifyProduct } from "./functions";
 
 import QRCodeStyling from "qr-code-styling";
 import { Download } from "lucide-react";
@@ -68,6 +68,12 @@ export default function Mint(): JSX.Element {
       setStatus("Connecting to wallet...");
       setError(null);
 
+      if (ref.current) {
+        ref.current.innerHTML = "";
+      }
+
+      setTx(null);
+
       if (typeof window === "undefined" || !window.ethereum) {
         throw new Error("MetaMask not detected");
       }
@@ -75,13 +81,12 @@ export default function Mint(): JSX.Element {
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
 
-      setStatus("Waiting for mint confirmation...");
-      const { tokenId, txHash } = await mintProduct(form, signer);
-      console.log("✅ Minted token ID:", tokenId.toString());
+      const { tokenId, txHash } = await mintProduct(form, signer, setStatus);
 
       const data = `https://sepolia.etherscan.io/tx/${txHash}`;
 
       setStatus("Generating QR code...");
+
       if (ref.current) {
         const qrCode = createQRCodeInstance(data);
         qrCode.append(ref.current);
@@ -93,9 +98,12 @@ export default function Mint(): JSX.Element {
       try {
         setUploading(true);
         url = await uploadQRCodeToIPFS(qrCodeRef.current!);
-        setIpfsUrl(url);
 
-        console.log("ipfs url:", url);
+        if (!url) {
+          throw new Error("IPFS upload returned an empty URL");
+        }
+
+        setIpfsUrl(url);
       } catch (err) {
         console.error("IPFS upload failed:", err);
       } finally {
@@ -106,20 +114,18 @@ export default function Mint(): JSX.Element {
         throw new Error("Failed to upload QR code to IPFS");
       }
 
-      setStatus("Registering QR Code with NFT...");
-      const tx = await registerProduct(tokenId, signer, url);
+      const registerProductTx = await registerProduct(tokenId, signer, url, setStatus);
+
+      await verifyProduct(tokenId, signer, setStatus);
 
       setStatus("✅ Product minted and registered successfully!");
-      setTx(tx);
+      setTx(registerProductTx);
     } catch (err) {
       const error = err as { code?: string; message: string };
       const code = error.code;
-      const message = error.message;
 
       if (code === "ACTION_REJECTED") {
         setError("❌ You cancelled the transaction.");
-      } else {
-        setError(`❌ Error: ${message}`);
       }
 
       setStatus(null);
